@@ -55,7 +55,7 @@
 	if(default_deconstruction_crowbar(tool))
 		return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/materials_market/attackby(obj/item/markable_object, mob/user, params)
+/obj/machinery/materials_market/attackby(obj/item/markable_object, mob/user, list/modifiers)
 	if(is_type_in_list(markable_object, exportable_material_items))
 		if(machine_stat & NOPOWER)
 			balloon_alert(user, "no power!")
@@ -87,7 +87,7 @@
 		var/obj/item/stock_block/new_block = new /obj/item/stock_block(drop_location())
 		new_block.export_value = price
 		new_block.export_mat = material_to_export
-		new_block.quantity = amount
+		new_block.quantity = amount / SHEET_MATERIAL_AMOUNT
 		to_chat(user, span_notice("You have created a stock block worth [new_block.export_value] cr! Sell it before it becomes liquid!"))
 		playsound(src, 'sound/machines/synth/synth_yes.ogg', 50, FALSE)
 		return TRUE
@@ -393,6 +393,7 @@
 	icon_state = "stock_block_liquid"
 	update_appearance(UPDATE_ICON_STATE)
 	visible_message(span_warning("\The [src] becomes liquid!"))
+	fluid = TRUE
 
 #undef MAX_STACK_LIMIT
 #undef GALATIC_MATERIAL_ORDER

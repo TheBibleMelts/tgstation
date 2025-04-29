@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(sandbag_recipes, list ( \
 	icon_state = "sandbag"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/emptysandbag/attackby(obj/item/W, mob/user, params)
+/obj/item/emptysandbag/attackby(obj/item/W, mob/user, list/modifiers)
 	if(istype(W, /obj/item/stack/ore/glass))
 		var/obj/item/stack/ore/glass/G = W
 		to_chat(user, span_notice("You fill the sandbag."))
@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(uranium_recipes, list ( \
 	amount = 25
 
 /obj/item/stack/sheet/mineral/uranium/fifty
-	amount = 25
+	amount = 50
 
 /*
  * Plasma
@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(gold_recipes, list ( \
 	gulag_valid = TRUE
 	merge_type = /obj/item/stack/sheet/mineral/silver
 	material_type = /datum/material/silver
-	tableVariant = /obj/structure/table/optable
+	table_type = /obj/structure/table/optable
 	walltype = /turf/closed/wall/mineral/silver
 
 GLOBAL_LIST_INIT(silver_recipes, list ( \
@@ -311,7 +311,7 @@ GLOBAL_LIST_INIT(titanium_recipes, list ( \
 	. = ..()
 	. += GLOB.titanium_recipes
 
-/obj/item/stack/sheet/mineral/titanium/attackby(obj/item/W, mob/user, params)
+/obj/item/stack/sheet/mineral/titanium/attackby(obj/item/W, mob/user, list/modifiers)
 	add_fingerprint(user)
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/old_rods = W
@@ -490,7 +490,7 @@ GLOBAL_LIST_INIT(abductor_recipes, list ( \
 	grind_results = list(/datum/reagent/carbon = 20)
 	novariants = TRUE
 
-/obj/item/stack/sheet/mineral/coal/attackby(obj/item/W, mob/user, params)
+/obj/item/stack/sheet/mineral/coal/attackby(obj/item/W, mob/user, list/modifiers)
 	if(W.get_temperature() > 300)//If the temperature of the object is over 300, then ignite
 		var/turf/T = get_turf(src)
 		message_admins("Coal ignited by [ADMIN_LOOKUPFLW(user)] in [ADMIN_VERBOSEJMP(T)]")
