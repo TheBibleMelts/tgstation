@@ -237,7 +237,6 @@
 
 /// Wrapper for calling "stun()" and doing relevant vfx/sfx
 /obj/item/melee/baton/proc/finalize_baton_attack(mob/living/target, mob/living/user, clumsy = FALSE)
-	PROTECTED_PROC(TRUE)
 	COOLDOWN_START(src, cooldown_check, cooldown)
 	if(on_stun_sound)
 		playsound(src, on_stun_sound, on_stun_volume, TRUE, -1)
@@ -759,6 +758,7 @@
 	abstract_type = /datum/atom_skin/stunsword
 	change_inhand_icon_state = TRUE
 	change_base_icon_state = TRUE
+	change_worn_icon_state = FALSE
 
 /datum/atom_skin/stunsword/default
 	preview_name = "Default"
@@ -933,6 +933,7 @@
 	slot_flags = null
 	throw_stun_chance = 50 //I think it'd be funny
 	can_upgrade = FALSE
+	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT * 1.15, /datum/material/telecrystal = SHEET_MATERIAL_AMOUNT, /datum/material/glass = SMALL_MATERIAL_AMOUNT * 2)
 
 /obj/item/melee/baton/security/cattleprod/telecrystalprod/baton_effect(mob/living/target, mob/living/user, stun_override, clumsy)
 	. = ..()

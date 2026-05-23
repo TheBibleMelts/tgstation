@@ -38,7 +38,7 @@
 	RegisterSignal(soul, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_attack))
 	RegisterSignal(soul, COMSIG_MOB_ATTACK_RANGED_SECONDARY, PROC_REF(on_secondary_attack))
 	RegisterSignal(src, COMSIG_ATOM_INTEGRITY_CHANGED, PROC_REF(on_integrity_change))
-	AddElement(/datum/element/bane, mob_biotypes = MOB_PLANT, damage_multiplier = 0.5, requires_combat_mode = FALSE)
+	AddComponent(/datum/component/bane, affected_biotypes = MOB_PLANT, damage_multiplier = 1.5)
 
 /obj/item/soulscythe/examine(mob/user)
 	. = ..()
@@ -95,7 +95,8 @@
 
 	soul.PossessByPlayer(ghost.ckey)
 	soul.copy_languages(master, LANGUAGE_MASTER) //Make sure the sword can understand and communicate with the master.
-	soul.faction = list("[REF(master)]")
+	soul.set_allies(list("[REF(master)]"))
+	soul.set_faction(null)
 	balloon_alert(master, "the scythe glows")
 	add_overlay("soulscythe_gem")
 	density = TRUE
@@ -255,7 +256,6 @@
 	health = 200
 	gender = NEUTER
 	mob_biotypes = MOB_SPIRIT
-	faction = list()
 	default_blood_volume = MAX_BLOOD_LEVEL
 	hud_type = /datum/hud/soulscythe
 	spawn_blacklisted = TRUE
