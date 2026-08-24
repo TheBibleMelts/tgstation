@@ -127,7 +127,7 @@
 	contains = list(/obj/item/gun/energy/laser/soul)
 
 /datum/supply_pack/goody/smg_single
-	name = "Disabler SMG Single_Pack"
+	name = "Disabler SMG Single Pack"
 	desc = "Contains one disabler SMG, capable of rapidly firing weak disabler beams."
 	cost = PAYCHECK_COMMAND * 6
 	access_view = ACCESS_WEAPONS
@@ -202,6 +202,12 @@
 	desc = "A fully stocked mechanical toolbox, for when you're too lazy to just print them out."
 	cost = PAYCHECK_CREW * 3
 	contains = list(/obj/item/storage/toolbox/mechanical)
+
+/datum/supply_pack/goody/autolatheboard
+	name = "Autolathe Circuit Board"
+	desc = "A single autolathe circuit board for your construction needs."
+	cost = PAYCHECK_CREW * 2
+	contains = list(/obj/item/circuitboard/machine/autolathe)
 
 /datum/supply_pack/goody/valentine
 	name = "Valentine Card"
